@@ -38,7 +38,12 @@ def timeline(search):
   print(pos_mpl_data)
   ax.hist(pos_mpl_data, bins = max(10, int((pos_mpl_data.max() - pos_mpl_data.min())/300)), color = 'green', alpha = 0.7)
   ax.hist(neg_mpl_data, bins = max(10, int((neg_mpl_data.max() - neg_mpl_data.min())/300)), color = 'red', alpha = 0.7)
-  plt.show()
+  buf = io.BytesIO()
+  fig.savefig(buf, format='png')
+  buf.seek(0)
+  buffer = b''.join(buf)
+  b2 = base64.b64encode(buffer)
+  fig2=b2.decode('utf-8')
 
 
   # print(client.get_related_entities(ent_id, 'EquityTimelines')[2])

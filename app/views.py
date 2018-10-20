@@ -5,7 +5,7 @@ import json
 import urllib
 from werkzeug import * #TODO: actually look at imports
 import classify as watson
-import sent
+import news
 
 views = Blueprint('views', __name__)
 
@@ -18,9 +18,9 @@ def file_allowed(file):
 @views.route('/', methods=["GET", "POST"])
 def homepage():
 	if request.method == "POST":
-		return render_template('homepage.html', WordCount = sent.colorText(request.form.get("emailtext")), piechart = str(sent.sentList(request.form.get("emailtext"))), topics = sent.analyzeText(request.form.get("emailtext")))
+    return render_template('homepage.html', sunalt=news.timeline('AAPL'))
 	else:
-		return render_template('homepage.html', WordCount = "", piechart = "[0,0,0,0,0,0,0]", topics = "")
+    return render_template('homepage.html', sunalt=news.timeline('AAPL'))
 
 @views.route('/about')
 def about():
