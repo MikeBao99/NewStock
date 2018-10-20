@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import datetime
 import numpy as np
+matplotlib.use('Agg')
+
 
 pos_events = ['All Time High', 'Buyback - Change in Plan Terms', 'Buyback Announcements by Company', 'Buyback Closings by Company', 'Buyback Tranche Update', 'Buyback', 'Transaction Announcements', 'Buyback Transaction Cancellations', 'Buybacks', 'Dividend Affirmations', 'Dividend Increases', 'Dividend Initiation', 'Expansions', 'Special Dividend Announced', 'Stock Splits', 'Person starts a specified role by company', 'Person starts any role by company']
 bad_events = ['Bankruptcy', 'Cyberattacks', 'Debt Defaults', 'Delayed Earnings Announcements', 'Discontinued Operations & Downsizings', 'Discontinued Operations/Downsizings', 'Dividend Cancellation', 'Dividend Decreases', 'Delayed SEC Filings', 'Earthquakes by Country', 'Financial Crises', 'Impeachments', 'Lawsuits', 'Leaks', 'Natural Disasters', 'Oversight', 'Penalties', 'Product Outages', 'Product Recalls', 'Political Scandals', 'Political Violence', 'Resignations', 'Regulations', 'Regulatory Agency Inquiries', 'Regulatory Authority - Regulations', 'Terrorism', 'Tornados by Region', 'Person ends a specified role by company', 'Person ends any role by company']
