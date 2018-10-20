@@ -1,10 +1,5 @@
 from flask import * #TODO: actually look at imports
-import boto3
 import requests
-import json
-import urllib
-from werkzeug import * #TODO: actually look at imports
-import classify as watson
 import sent
 
 views = Blueprint('views', __name__)
