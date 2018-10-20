@@ -13,14 +13,14 @@ extensions = set(['jpg'])
 
 def file_allowed(file):
 	return '.' in file and \
-		   file.rsplit('.', 1)[1] in extensions
+			 file.rsplit('.', 1)[1] in extensions
 
 @views.route('/', methods=["GET", "POST"])
 def homepage():
 	if request.method == "POST":
-    return render_template('homepage.html', sunalt=news.timeline('AAPL'))
+		return render_template('homepage.html', sunalt=news.timeline('AAPL'))
 	else:
-    return render_template('homepage.html', sunalt=news.timeline('AAPL'))
+		return render_template('homepage.html', sunalt=news.timeline('AAPL'))
 
 @views.route('/about')
 def about():
