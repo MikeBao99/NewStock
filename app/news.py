@@ -1,3 +1,4 @@
+matplotlib.use('Agg')
 import requests
 import json
 import api_client
