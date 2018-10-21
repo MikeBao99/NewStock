@@ -69,7 +69,7 @@
                             <div class="col-md-12 text-center">
                                 <h4>Text Body</h4>
                             </div>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="emailtext"></textarea>
+                            <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="8" name="stock"></input>
                         </div>
                         <div class="col-md-12 text-center"><input class="btn btn-primary text-center" type="submit" value="Submit" name="submit"></div>
                     </form>
@@ -87,9 +87,11 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        {% if sunalt %}
+        <div class="row text-center">
             <img src="data:image/png;base64,{{ sunalt }}">
         </div>
+        {% endif %}
         <div class = "row">
             <div class="col-md-6 text-center top30">
                 <h4>Overall Sentiment</h4>
