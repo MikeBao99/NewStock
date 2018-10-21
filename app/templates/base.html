@@ -44,6 +44,12 @@
             .table th {
             text-align: center;
             }
+            .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+            }
         </style>
         <link rel="icon" href="https://brasshorncommunications.uk/images/warrant_canary.png">
         <title>TextCompanion</title>
@@ -89,23 +95,9 @@
         </div>
         {% if sunalt %}
         <div class="row text-center">
-            <img src="data:image/png;base64,{{ sunalt }}" class="text-center">
+            <img src="data:image/png;base64,{{ sunalt }}" class="center">
         </div>
         {% endif %}
-        <div class = "row">
-            <div class="col-md-6 text-center top30">
-                <h4>Overall Sentiment</h4>
-            </div>
-            <div class="col-md-6 text-center top30">
-                <h4>Major Topics</h4>
-            </div>
-            <div class="col-md-4 offset-md-1 top10">
-                <canvas id="myChart" width="10" height="10"></canvas>
-            </div>
-            <div class = "col-md-4 offset-md-2 text-center top10">
-                <h6></h6>
-            </div>
-        </div>
         <div class = "top30 col-md-12"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
