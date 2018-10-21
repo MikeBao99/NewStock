@@ -16,7 +16,7 @@ pos_events = ['All Time High', 'Buyback - Change in Plan Terms', 'Buyback Announ
 bad_events = ['Bankruptcy', 'Cyberattacks', 'Debt Defaults', 'Delayed Earnings Announcements', 'Discontinued Operations & Downsizings', 'Discontinued Operations/Downsizings', 'Dividend Cancellation', 'Dividend Decreases', 'Delayed SEC Filings', 'Earthquakes by Country', 'Financial Crises', 'Impeachments', 'Lawsuits', 'Leaks', 'Natural Disasters', 'Oversight', 'Penalties', 'Product Outages', 'Product Recalls', 'Political Scandals', 'Political Violence', 'Resignations', 'Regulations', 'Regulatory Agency Inquiries', 'Regulatory Authority - Regulations', 'Terrorism', 'Tornados by Region', 'Person ends a specified role by company', 'Person ends any role by company']
 
 def timeline(search):
-  client = api_client.get_pandas_graph_client('https://www.kensho.com/external/v1', '769469f2d24c9203f3fe13666d4358d466c480a9')
+  client = api_client.get_pandas_graph_client('https://www.kensho.com/external/v1', 'b24aa00e77ea4f653c606fe7ae1e05969de6efff')
   ent_id = client.search_entities('Equity', search)[0]['entity_id']
   symbol = client.search_entities('Equity', search)[0]['ticker_name']
   print(client.search_entities('Equity', search)[0])
