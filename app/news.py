@@ -51,6 +51,7 @@ def timeline(search):
   ax1.plot(prices["Adj Close"])
   ax1.set_title('Stock Price')
   ax.set_title('News Summary')
+  fig.subplots_adjust(hspace=.6)
   fig.savefig(buf, format='png')
   buf.seek(0)
   buffer = b''.join(buf)
