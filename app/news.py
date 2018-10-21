@@ -8,6 +8,8 @@ import matplotlib.dates as mdates
 import datetime
 import numpy as np
 import io
+import base64
+
 matplotlib.use('Agg')
 
 pos_events = ['All Time High', 'Buyback - Change in Plan Terms', 'Buyback Announcements by Company', 'Buyback Closings by Company', 'Buyback Tranche Update', 'Buyback', 'Transaction Announcements', 'Buyback Transaction Cancellations', 'Buybacks', 'Dividend Affirmations', 'Dividend Increases', 'Dividend Initiation', 'Expansions', 'Special Dividend Announced', 'Stock Splits', 'Person starts a specified role by company', 'Person starts any role by company']
