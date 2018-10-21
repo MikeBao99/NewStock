@@ -9,15 +9,17 @@ import datetime
 import numpy as np
 import io
 import base64
-
-matplotlib.use('Agg')
+import pandas as pd
+from pandas_datareader import data as web
 
 pos_events = ['All Time High', 'Buyback - Change in Plan Terms', 'Buyback Announcements by Company', 'Buyback Closings by Company', 'Buyback Tranche Update', 'Buyback', 'Transaction Announcements', 'Buyback Transaction Cancellations', 'Buybacks', 'Dividend Affirmations', 'Dividend Increases', 'Dividend Initiation', 'Expansions', 'Special Dividend Announced', 'Stock Splits', 'Person starts a specified role by company', 'Person starts any role by company']
 bad_events = ['Bankruptcy', 'Cyberattacks', 'Debt Defaults', 'Delayed Earnings Announcements', 'Discontinued Operations & Downsizings', 'Discontinued Operations/Downsizings', 'Dividend Cancellation', 'Dividend Decreases', 'Delayed SEC Filings', 'Earthquakes by Country', 'Financial Crises', 'Impeachments', 'Lawsuits', 'Leaks', 'Natural Disasters', 'Oversight', 'Penalties', 'Product Outages', 'Product Recalls', 'Political Scandals', 'Political Violence', 'Resignations', 'Regulations', 'Regulatory Agency Inquiries', 'Regulatory Authority - Regulations', 'Terrorism', 'Tornados by Region', 'Person ends a specified role by company', 'Person ends any role by company']
 
 def timeline(search):
-  client = api_client.get_pandas_graph_client('https://www.kensho.com/external/v1', 'd5225345dcb735c2d37a0b475b125995fd309d47')
+  client = api_client.get_pandas_graph_client('https://www.kensho.com/external/v1', '769469f2d24c9203f3fe13666d4358d466c480a9')
   ent_id = client.search_entities('Equity', search)[0]['entity_id']
+  symbol = client.search_entities('Equity', search)[0]['ticker_name']
+  print(client.search_entities('Equity', search)[0])
   time_id = client.get_related_entities(ent_id, 'EquityTimelines')
   posx = []
   poxy = []
@@ -31,7 +33,7 @@ def timeline(search):
       elif t['timeline_type'] in pos_events:
         for ti in client.get_timeline(t['entity_id']):
           posx.append(ti['event_date'][:ti['event_date'].index('T')])
-  fig, ax = plt.subplots(1,1)
+  fig, (ax1, ax) = plt.subplots(2,1, gridspec_kw = {'height_ratios':[3, 1]})
   posx = list(map(datetime.datetime.strptime, posx, len(posx)*['%Y-%m-%d']))
   negx = list(map(datetime.datetime.strptime, negx, len(negx)*['%Y-%m-%d']))
   locator = mdates.AutoDateLocator()
@@ -41,10 +43,13 @@ def timeline(search):
   neg_mpl_data = mdates.date2num(negx)
   # ax.xaxis.set_major_locator(mdates.MonthLocator())
   # ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%y'))
-  print(pos_mpl_data)
   ax.hist(pos_mpl_data, bins = max(10, int((pos_mpl_data.max() - pos_mpl_data.min())/300)), color = 'green', alpha = 0.7)
   ax.hist(neg_mpl_data, bins = max(10, int((neg_mpl_data.max() - neg_mpl_data.min())/300)), color = 'red', alpha = 0.7)
   buf = io.BytesIO()
+  start,end = mdates.num2date(ax.get_xaxis().get_data_interval()[0]), mdates.num2date(ax.get_xaxis().get_data_interval()[1])
+  prices = web.DataReader(symbol, "yahoo", start, end)
+  ax1.plot(prices["Adj Close"])
+  # fig.show()
   fig.savefig(buf, format='png')
   buf.seek(0)
   buffer = b''.join(buf)
@@ -57,4 +62,4 @@ def timeline(search):
   # print(client.list_timeline_types())
 
 if __name__ == '__main__':
-  timeline('COF')
+  timeline('AAPL')
