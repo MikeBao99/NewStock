@@ -17,8 +17,9 @@ bad_events = ['Bankruptcy', 'Cyberattacks', 'Debt Defaults', 'Delayed Earnings A
 
 def timeline(search):
   client = api_client.get_pandas_graph_client('https://www.kensho.com/external/v1', '769469f2d24c9203f3fe13666d4358d466c480a9')
-  ent_id = client.search_entities('Equity', search)[0]['entity_id']
-  symbol = client.search_entities('Equity', search)[0]['ticker_name']
+  ent = client.search_entities('Equity', search)[0]
+  ent_id = ent['entity_id']
+  symbol = ent['ticker_name']
   print(client.search_entities('Equity', search)[0])
   time_id = client.get_related_entities(ent_id, 'EquityTimelines')
   posx = []
