@@ -49,7 +49,7 @@ def timeline(search):
   start,end = mdates.num2date(ax.get_xaxis().get_data_interval()[0]), mdates.num2date(ax.get_xaxis().get_data_interval()[1])
   prices = web.DataReader(symbol, "yahoo", start, end)
   ax1.plot(prices["Adj Close"])
-  ax1.set_title('Stock Price')
+  ax1.set_title('Stock Price (%s)' % (symbol))
   ax.set_title('News Summary')
   fig.subplots_adjust(hspace=.6)
   fig.savefig(buf, format='png')
