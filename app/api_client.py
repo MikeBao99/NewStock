@@ -112,6 +112,6 @@ def get_pandas_graph_client(host, api_key, retries=1):
 
 
 
-client = get_pandas_graph_client('https://www.kensho.com/external/v1', '769469f2d24c9203f3fe13666d4358d466c480a9')
+client = get_pandas_graph_client('https://www.kensho.com/external/v1', 'b24aa00e77ea4f653c606fe7ae1e05969de6efff')
 
 # print client.list_timeline_types()
