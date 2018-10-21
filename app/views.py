@@ -18,7 +18,7 @@ def file_allowed(file):
 @views.route('/', methods=["GET", "POST"])
 def homepage():
 	if request.method == "POST":
-		return render_template('homepage.html', sunalt=news.timeline(requests.form.get('stock')))
+		return render_template('homepage.html', sunalt=news.timeline(request.form.get('stock')))
 	else:
 		return render_template('homepage.html', sunalt=None)
 
