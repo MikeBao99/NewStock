@@ -20,7 +20,6 @@ def timeline(search):
   ent = client.search_entities('Equity', search)[0]
   ent_id = ent['entity_id']
   symbol = ent['ticker_name']
-  print(client.search_entities('Equity', search)[0])
   time_id = client.get_related_entities(ent_id, 'EquityTimelines')
   posx = []
   poxy = []
@@ -50,7 +49,8 @@ def timeline(search):
   start,end = mdates.num2date(ax.get_xaxis().get_data_interval()[0]), mdates.num2date(ax.get_xaxis().get_data_interval()[1])
   prices = web.DataReader(symbol, "yahoo", start, end)
   ax1.plot(prices["Adj Close"])
-  # fig.show()
+  ax1.set_title('Stock Price')
+  ax.set_title('News Summary')
   fig.savefig(buf, format='png')
   buf.seek(0)
   buffer = b''.join(buf)
