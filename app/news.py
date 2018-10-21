@@ -50,7 +50,7 @@ def timeline(search):
   buffer = b''.join(buf)
   b2 = base64.b64encode(buffer)
   fig2=b2.decode('utf-8')
-
+  return fig2
 
   # print(client.get_related_entities(ent_id, 'EquityTimelines')[2])
   # print(client.get_timeline(time_id)[0])
